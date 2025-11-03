@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Post</title>
+  <link rel="stylesheet" href="/styles/index.css">
+  <style>
+    .admin-container { max-width: 900px; margin: 100px auto; padding: 40px; }
+    .admin-container h1 { color: var(--color-text-dark); }
+    form { display: flex; flex-direction: column; gap: 15px; background: #f0f0f0; padding: 20px; border-radius: 8px; }
+    input, textarea { padding: 10px; font-size: 1rem; }
+  </style>
+</head>
+<body style="background: #E8E2D2;">
+
+  <div class="admin-container">
+    <h1>Editar Post: <%= post.title %></h1>
+
+    <form action="/admin/edit/<%= post.id %>" method="POST">
+      <label for="title">Título:</label>
+      <input type="text" id="title" name="title" value="<%= post.title %>" required>
+      <label for="content">Contenido:</label>
+      <textarea id="content" name="content" rows="10" required><%= post.content %></textarea>
+      <button type="submit" class="cta-button">Guardar Cambios</button>
+    </form>
+    <a href="/admin/panel">Cancelar</a>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Korvad | <%= post.title %></title>
+  <link rel="stylesheet" href="/styles/index.css">
+</head>
+<body>
+
+  <header class="header">
+      </header>
+
+  <main>
+    <section class="container" style="padding-top: 100px; padding-bottom: 100px; max-width: 800px;">
+      
+      <h1 style="font-family: 'Panchang', sans-serif; font-size: 3rem; margin-bottom: 20px;">
+        <%= post.title %>
+      </h1>
+      
+      <p style="font-size: 0.9rem; color: #555;">
+        Publicado el: <%= new Date(post.created_at).toLocaleDateString('es-ES') %>
+      </p>
+
+      <div class="post-content" style="font-size: 1.25rem; line-height: 1.6; margin-top: 40px;">
+        <%- post.content.replace(/\n/g, '<br>') %>
+      </div>
+
+      <a href="/blog" style="margin-top: 50px; display: inline-block;">&larr; Volver al blog</a>
+
+    </section>
+  </main>
+
+  <footer class="footer-section">
+      </footer>
+
+  <script>
+    // Pega tu script de hamburguesa aquí
+  </script>
+</body>
+</html>

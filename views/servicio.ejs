@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Korvad | <%= service.title %></title>
+  <link rel="stylesheet" href="/styles/index.css"> </head>
+<body>
+
+  <header class="header">
+    <div class="header-container container">
+      <a href="/" class="header-logo">
+        <img src="/assets/images/logo-korvad.svg" alt="Logo de KORVAD">
+      </a>
+      <nav class="header-nav" id="main-nav">
+        <a href="/">Principal</a>
+        <a href="/contacto">Contacta</a>
+        <a href="/precios">Precios</a>
+        <a href="/blog">Blog</a>
+      </nav>
+      <button class="hamburger-menu" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="pricing-hero">
+      <div class="container">
+        <h1><%= service.title %></h1>
+        <p class="pricing-subtitle" style="max-width: 600px; margin: 20px auto 40px;"><%= service.description %></p>
+        
+        <article class="plan-card" style="max-width: 400px; margin: 0 auto;">
+          <header class="plan-header">
+            <h4>Plan Seleccionado</h4>
+            <p class="plan-price"><%= service.price %></p>
+          </header>
+          <footer class="plan-footer">
+            <a href="<%= service.paymentLink %>" class="cta-button">
+              <%= (service.price === 'Desde 3.999€') ? 'Contactar' : 'Contratar Plan' %>
+            </a>
+          </footer>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-section">
+      </footer>
+
+  <script>
+    // --- 1. Lógica para el Menú Hamburguesa (Copiada de tu index.html) ---
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const mainNav = document.getElementById('main-nav');
+        
+        if (hamburgerBtn && mainNav) {
+            hamburgerBtn.addEventListener('click', () => {
+              mainNav.classList.toggle('nav-open');
+              hamburgerBtn.classList.toggle('is-active');
+              const isExpanded = mainNav.classList.contains('nav-open');
+              hamburgerBtn.setAttribute('aria-expanded', isExpanded);
+            });
+        }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,1339 @@
+/* --- Definiciones de Fuentes --- */
+
+@font-face {
+  font-family: 'Alan Sans'; /* Fuente para párrafos (y por defecto) */
+  src: url('../fonts/AlanSans-VariableFont_wght.ttf') format('truetype');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Panchang'; /* Fuente para H1, botones, nav */
+  src: url('../fonts/Panchang-Variable.ttf') format('truetype');
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BBH Sans Bartle'; /* Fuente para H2, H3, H4 */
+  src: url('../fonts/BBHSansBartle-Regular.ttf') format('truetype');
+  font-weight: 400; /* Regular */
+  font-style: normal;
+  font-display: swap;
+}
+
+
+/* ======== 1. CONFIGURACIÓN Y VARIABLES ======== */
+/* ======== 1. CONFIGURACIÓN Y VARIABLES ======== */
+:root {
+    /* Colores y anchos definidos por ti */
+    --color-background-light: #E8E2D2;
+    --color-background-dark: #121212;
+    --color-text-dark: #121212;
+    --color-text-light: #B4B4B2;
+    --color-border: #B4B4B2;
+    --color-accent: #B79A62; 
+    --color-dark-button: #353535;
+
+    --width-container: 1300px;
+    --spacing-section: 100px;         /* Espacio entre secciones */
+
+    /* ----- NUEVAS FUENTES FLUIDAS con clamp(MIN, PREFERIDO, MAX) ----- */
+    
+    /* Ajustado: 75px (desktop) / ~36px (mobile) */
+--font-size-h1: clamp(2.25rem, 1.5rem + 5vw, 4.6875rem);
+
+/* Ajustado: 30px (desktop) / ~20px (mobile) */
+--font-size-h2: clamp(1.25rem, 1.1rem + 1.5vw, 1.875rem);
+    
+    --font-size-h3: 1.5rem;  /* 24px (Se mantiene fijo, es un buen tamaño) */
+    --font-size-h4: 1.125rem; /* 18px (Se mantiene fijo) */
+    
+    /* Original: 28px (desktop) / 20px (mobile) */
+    --font-size-hero-sub: clamp(1.25rem, 1rem + 3vw, 1.75rem);
+    
+    /* Original: 28px (desktop) / 20px (mobile) */
+    --font-size-faq-title-question: clamp(1.25rem, 1rem + 3vw, 1.75rem);
+    
+    /* Original: 20px (desktop) / 16px (mobile) */
+    --font-size-body: clamp(1rem, 0.9rem + 1vw, 1.25rem);
+    
+    /* Original: 30px (desktop) / 20px (mobile) */
+    --font-size-button: clamp(1.25rem, 1rem + 2.5vw, 1.875rem);
+    
+    /* Original: 20px (desktop) / 16px (mobile) */
+    --font-size-nav: clamp(1rem, 0.8rem + 1.5vw, 1.25rem);
+    
+    /* Original: 20px (desktop) / 16px (mobile) */
+    --font-size-faq-answer: clamp(1rem, 0.9rem + 1vw, 1.25rem);
+    
+    --font-size-testimonial-quote: 1rem; /* 16px (Se mantiene fijo) */
+    
+    /* Original: 40px (desktop) / 32px (mobile) */
+    --font-size-footer-h2: clamp(2rem, 1.5rem + 4vw, 2.5rem);
+    
+    --font-size-copyright: 0.9rem;   /* ~14px (Se mantiene fijo) */
+
+    /* Estimación altura header para padding */
+    --header-height-estimate: 70px;
+}
+
+/* ======== 3. RESETEO BÁSICO Y ESTILOS GLOBALES ======== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    font-family: 'Alan Sans', sans-serif;
+    background-color: var(--color-background-light);
+    color: var(--color-text-dark);
+    font-size: var(--font-size-body);
+    font-weight: 400;
+    line-height: 1.3;
+    letter-spacing: -0.03em;
+}
+
+/* Añadir padding top al body para compensar el header fijo */
+body {
+    padding-top: var(--header-height-estimate);
+}
+
+.container {
+    width: 90%;
+    max-width: var(--width-container);
+    margin: 0 auto;
+}
+
+section {
+    padding-top: var(--spacing-section);
+    padding-bottom: var(--spacing-section);
+}
+
+p {
+    font-size: var(--font-size-body);
+    line-height: inherit;
+    letter-spacing: inherit;
+}
+
+h2, h3, h4 {
+    font-family: 'BBH Sans Bartle', sans-serif;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0;
+}
+
+h2 { font-size: var(--font-size-h2); }
+h3 { font-size: var(--font-size-h3); }
+h4 { font-size: var(--font-size-h4); }
+
+
+.visually-hidden {
+    position: absolute; width: 1px; height: 1px; margin: -1px;
+    padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); border: 0;
+}
+
+/* ======== 4. ESTILOS DE SECCIONES Y ELEMENTOS ESPECÍFICOS ======== */
+
+/* --- HEADER --- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--color-background-light);
+    z-index: 1000;
+    border-bottom: 1px solid var(--color-border);
+}
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 0;
+}
+.header-logo {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-border);
+    padding: 10px 15px;
+    text-decoration: none;
+}
+.header-logo img {
+    height: 30px;
+    display: block;
+}
+.header-nav {
+    display: flex;
+}
+.header-nav a {
+    font-family: 'Panchang', sans-serif;
+    font-weight: 600; /* Bold */
+    font-size: var(--font-size-nav);
+    text-decoration: none;
+    color: var(--color-text-dark);
+    padding: 10px 15px;
+    border: 1px solid var(--color-border);
+    line-height: 1.3333;
+    letter-spacing: -0.03em;
+    display: flex;
+    align-items: center;
+}
+/* --- ESTILOS DEL BOTÓN HAMBURGUESA --- */
+.hamburger-menu {
+    display: none; /* Oculto por defecto en escritorio */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1010; /* Por encima del nav */
+    margin: auto 0;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-text-dark);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+/* .header-nav a:last-child { border-right: none; } */
+
+
+/* --- HERO SECTION --- */
+.hero-section { text-align: center; }
+.hero-content h1 {
+    font-family: 'Panchang', sans-serif;
+    font-weight: 700; /* Bold - O el valor exacto de Figma */
+    font-size: var(--font-size-h1); /* <--- LÍNEA SIMPLIFICADA */
+    line-height: 1;
+    letter-spacing: -0.05em;
+    margin-bottom: 2.6875rem; /* 43px */
+}
+.hero-subtitle {
+    font-family: 'Alan Sans', sans-serif;
+    font-size: var(--font-size-hero-sub);
+    font-weight: 600; /* Semibold - O el valor exacto de Figma */
+    max-width: 63.75rem; /* 1020px */
+    margin: 0 auto 2rem auto; /* 38px bottom margin */
+    text-align: left;
+    line-height: 1.2857;
+    letter-spacing: -0.03em;
+}
+
+
+
+.cta-button {
+    font-family: 'Panchang', sans-serif;
+    font-weight: 700; /* Bold - O el valor exacto de Figma */
+    font-size: var(--font-size-button);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-background-dark);
+    color: var(--color-accent); /* #B79A62 */
+    padding: 0.9375rem 2.1875rem; /* 15px 35px */
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    line-height: 1.1667;
+    letter-spacing: -0.05em;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-bottom: 30px;
+}
+.cta-button:hover { transform: scale(1.05); }
+
+/* --- AUTHORITY (LOGOS) --- */
+.authority-section { background-color: var(--color-background-dark); padding: 30px 0; overflow: hidden; margin-top:10px;}
+.authority-logos { display: flex; justify-content: space-around; align-items: center; gap: 40px; }
+.authority-logos img { height: 25px; filter: grayscale(1) brightness(5); opacity: 0.8; }
+
+.authority-logos img:hover {
+    transform: scale(1.2); /* Se hace un 20% más grande */
+    opacity: 1;            /* Se vuelve completamente opaco */
+}
+
+
+
+/* --- BENEFITS --- */
+.section-title { /* H2 */
+    text-align: left; padding-bottom: 10px; border-bottom: 1px solid var(--color-border); margin-bottom: 60px;
+}
+.benefit-item { text-align: left; margin-bottom: 40px; }
+.benefit-icon { height: 50px; margin-bottom: 15px; }
+.benefit-item h4 { /* H3 (o H4) */
+    margin-bottom: 10px;
+}
+
+
+/* --- PROBLEM / SOLUTION --- */
+.ps-section {
+    background-color: var(--color-background-dark);
+    color: var(--color-text-light); /* Color de texto claro por defecto */
+}
+/* Estilo para los H2 que TIENEN la clase .section-title-icon */
+h2.section-title-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    font-size: var(--font-size-h2);
+    color: inherit; /* Hereda el color claro por defecto */
+}
+/* Estilo ESPECÍFICO para los H2 de Problema y Solución */
+.problem-col h2.section-title-icon,
+.solution-col h2.section-title-icon {
+    color: var(--color-accent); /* #B79A62 */
+}
+.section-title-icon img {
+    height: 20px;
+}
+.ps-section ul {
+    list-style: disc;
+    margin-left: 20px;
+}
+.ps-section li { /* Párrafo P/S */
+    margin-bottom: 15px;
+}
+.solution-col {
+    margin-top: 40px; /* Espacio en móvil */
+}
+
+/* --- FAQ --- */
+.faq-item { border: 1px solid var(--color-border); margin-bottom: 20px; }
+.faq-item summary { /* Texto Pregunta (H3) */
+    padding: 20px; display: flex; justify-content: space-between; align-items: center;
+    cursor: pointer; list-style: none;
+}
+.faq-icon { height: 15px; transition: transform 0.2s ease; }
+.faq-item[open] .faq-icon { transform: rotate(90deg); }
+.faq-content { padding: 0 20px 20px 20px; }
+.faq-content p { /* Párrafo Respuesta */
+    font-size: var(--font-size-faq-answer);
+}
+.faq-title-question {
+    font-family: 'Alan Sans', sans-serif;
+    font-size: var(--font-size-faq-title-question);
+    font-weight: 600; /* Semibold - O el valor exacto de Figma */
+    text-align: left;
+    line-height: 1.2857;
+    letter-spacing: -0.03em;
+}
+/* --- TESTIMONIALS --- */
+.testimonials-section { background-color: var(--color-background-dark); color: var(--color-text-light); }
+.testimonial-card { background-color: var(--color-background-light); color: var(--color-text-dark); padding: 25px; margin-bottom: 20px; }
+.testimonial-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+.testimonial-avatar { height: 50px; width: 50px; border-radius: 50%; object-fit: cover; }
+.testimonial-card blockquote p { /* Cita */
+    font-size: var(--font-size-testimonial-quote);
+    font-style: italic; margin-bottom: 20px;
+}
+.testimonial-footer { display: flex; justify-content: space-between; align-items: center; }
+.stars { font-size: 1.2rem; color: #f0c14b; }
+.testimonial-source { height: 20px; }
+
+/* --- FOOTER --- */
+.footer-section { text-align: center; background-color: var(--color-background-light); }
+.footer-section h2 { /* Título H2 */
+    font-size: var(--font-size-footer-h2);
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+/* --- CONTENT FOOTER --- */
+.content-footer-section { text-align: center; background-color: var(--color-background-dark); padding-top: 20px;}
+.content-footer-section h2 { /* Título H2 */
+    font-size: var(--font-size-footer-h2);
+    color: var(--color-text-light);
+    margin-bottom: 30px;
+    margin-top: 50px;
+}
+.content-cta-button {
+    font-family: 'Panchang', sans-serif;
+    font-weight: 700; /* Bold - O el valor exacto de Figma */
+    font-size: var(--font-size-button);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-dark-button);
+    color: var(--color-accent); /* #B79A62 */
+    padding: 0.9375rem 2.1875rem; /* 15px 35px */
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    line-height: 1.1667;
+    letter-spacing: -0.05em;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+}
+.content-cta-button:hover { transform: scale(1.05); }
+.copyright { /* Párrafo */
+    font-size: var(--font-size-copyright);
+    margin-top: 60px; opacity: 0.7;
+}
+
+/* ======== 6. ESTILOS DE PÁGINA DE CONTACTO (AÑADIDOS) ======== */
+
+/* --- 6.1 Hero de Contacto --- */
+/* --- 6.1 Hero de Contacto --- */
+.contact-hero {
+    text-align: left; /* CAMBIADO DE 'center' A 'left' */
+    padding-top: 60px; 
+    padding-bottom: 60px;
+}
+.contact-hero h1 {
+    /* Esta regla no necesita cambios, ya hereda el text-align */
+    font-family: 'Panchang', sans-serif;
+    font-weight: 700;
+    font-size: clamp(3rem, 10vw, var(--font-size-h1));
+    line-height: 1;
+    letter-spacing: -0.05em;
+    margin-bottom: 2.6875rem; 
+}
+.contact-hero-sub {
+    font-family: 'Alan Sans', sans-serif;
+    font-size: var(--font-size-body); 
+    font-weight: 400;
+    max-width: 600px; 
+    margin: 0; /* CAMBIADO DE '0 auto' A '0' */
+    text-align: left; /* CAMBIADO DE 'center' A 'left' */
+    line-height: 1.3;
+    letter-spacing: -0.03em;
+}
+
+/* --- 6.2 Métodos de Contacto --- */
+/* --- 6.2 Métodos de Contacto (Actualizado para el nuevo diseño) --- */
+.contact-methods {
+    padding-bottom: var(--spacing-section);
+}
+.methods-grid {
+    display: grid;
+    /* Las columnas se definen en tus Media Queries, lo cual es correcto */
+    gap: 30px;
+}
+
+.method-card {
+    padding: 30px;
+    text-align: left; /* Centra el texto (como la lista) */
+    
+    /* Usamos Flex para alinear todo */
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Centra el .method-header y el .cta-button */
+    justify-content: space-between; /* Empuja el botón al fondo */
+    height: 100%; /* Asegura que las tarjetas en la misma fila tengan la misma altura */
+}
+.method-button {
+    font-family: 'Panchang', sans-serif;
+    font-weight: 700; /* Bold - O el valor exacto de Figma */
+    font-size: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-background-dark);
+    color: var(--color-accent); /* #B79A62 */
+    padding: 0.9375rem 2.1875rem; /* 15px 35px */
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    line-height: 1.1667;
+    letter-spacing: -0.05em;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 30px;
+    margin-top: 10px;
+}
+.method-button:hover { transform: scale(1.05); }
+
+/* Nuevo: Contenedor para icono + título */
+.method-header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.method-icon {
+    height: 35px; 
+    margin-bottom: 0; /* Quita el margen inferior de la regla anterior */
+    align-self: start;
+}
+
+.method-card h4 {
+    font-family: 'Panchang', sans-serif; /* Coincide con la fuente del botón */
+    font-weight: 700;
+    font-size: 1.5rem; /* 24px, más grande que h4 normal */
+    margin-bottom: 0; /* Quita el margen por defecto */
+    line-height: 1.2; /* Ajuste para 'Panchang' */
+}
+
+/* Nuevo: Estilos para la lista de detalles */
+.method-details {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 30px; /* Espacio antes del botón */
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.5;
+    color: var(--color-text-dark);
+    min-height: 60px; /* Ayuda a alinear verticalmente el contenido entre tarjetas */
+}
+
+.method-details li:first-child {
+    font-family: 'Alan Sans', sans-serif; /* Asegura la fuente de párrafo */
+    font-weight: 600; /* Semibold */
+}
+
+/* REGLA CLAVE: 
+   Sobrescribe los márgenes de tu .cta-button global 
+   SOLO cuando está dentro de .method-card.
+*/
+.method-card .method-button {
+    align-self: center;
+    margin-left: 0;
+    margin-bottom: 0;
+    width: 100%; /* Hace que el botón ocupe todo el ancho de la tarjeta */
+}
+
+/* Ya no usamos .method-card p, .method-button, 
+  ni .method-button:hover, así que esas reglas se eliminan.
+*/
+
+/* --- 6.4 Qué Esperar --- */
+/* --- 6.4 Qué Esperar (Actualizado al diseño de 4 columnas) --- */
+.contact-expectations {
+    padding-top: var(--spacing-section);
+    padding-bottom: var(--spacing-section);
+}
+
+.expectations-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 columna por defecto (móvil) */
+    gap: 20px; /* Espacio entre tarjetas */
+}
+
+.expectation-card {
+    text-align: left;
+    height: 100%; /* Asegura que todas las tarjetas midan lo mismo en la misma fila */
+}
+
+.expectation-icon {
+    height: 30px; /* Ajusta este tamaño según tus iconos */
+    margin-bottom: 0px;
+}
+
+.expectation-title {
+    /* Este es el <p> que contiene el <strong> */
+    font-family: 'Alan Sans', sans-serif;
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.expectation-title strong {
+    font-weight: 700; /* O el peso 'bold' que prefieras */
+}
+
+.expectation-card p {
+    font-size: 1rem; /* 16px (más pequeño que el body global) */
+    line-height: 1.5;
+    margin: 0; /* Resetea márgenes de <p> */
+}
+
+/* Sobrescribimos el <p> del título para que no se vea afectado */
+.expectation-card p.expectation-title {
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+/* Las clases .expectations-content, .expectations-content ul, 
+  .expectations-content li y .bonus-box ya no se usan y pueden ser eliminadas.
+*/
+
+/* --- 6.5 CTA Final --- */
+.contact-footer-cta {
+    background-color: var(--color-background-dark);
+    padding: var(--spacing-section) 0;
+    text-align: center;
+    color: var(--color-text-light);
+}
+.contact-footer-cta h2 {
+    font-family: 'Panchang', sans-serif; /* Como el H1 */
+    font-weight: 700;
+    font-size: var(--font-size-footer-h2); /* 40px */
+    color: var(--color-text-light); /* Texto claro */
+    line-height: 1.1;
+    letter-spacing: -0.05em;
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+}
+.footer-cta-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+/* Modificador para el .cta-button */
+.cta-button--light-text {
+    color: var(--color-background-light); /* Texto claro */
+}
+.cta-button--light-text:hover {
+    color: var(--color-accent); /* Mantiene el hover original si quieres */
+}
+
+/* ... (Todo tu CSS hasta aquí, incluyendo la SECCIÓN 6) ... */
+
+
+/* ======== 7. ESTILOS DE PÁGINA DE PRECIOS ======== */
+
+/* --- 7.1 Hero y Título --- */
+.pricing-hero {
+    text-align: center;
+    padding-top: var(--spacing-section);
+    padding-bottom: var(--spacing-section);
+}
+.pricing-hero h1 {
+    font-family: 'Panchang', sans-serif;
+    font-weight: 700;
+    font-size: var(--font-size-h1);
+    line-height: 1;
+    letter-spacing: -0.05em;
+    margin-bottom: 20px;
+}
+.pricing-subtitle {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 400;
+    margin: 0 auto 50px auto;
+    line-height: 1.4;
+    color: var(--color-text-dark);
+}
+
+/* --- 7.2 Toggle de Facturación (Actualizado con CSS Grid) --- */
+
+/* 1. El contenedor principal es ahora una Rejilla (Grid) de 3 columnas */
+.billing-toggle {
+    display: grid;
+    /* MAGIA: 1fr (flexible) | auto (justo) | 1fr (flexible) */
+    grid-template-columns: 1fr auto 1fr; 
+    align-items: center;
+    gap: 20px; /* Espacio entre columnas */
+    
+    margin-bottom: 70px;
+    font-family: 'Alan Sans', sans-serif;
+    font-size: 1rem; /* 16px */
+    color: var(--color-text-dark);
+}
+
+/* 2. Columna Central: Los controles del toggle */
+.toggle-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    /* Al estar en la columna 'auto', se centrará perfectamente */
+}
+
+/* 3. Columna Derecha: El wrapper de la línea y el descuento */
+.billing-discount-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Alinea el contenido a la derecha */
+}
+
+/* 4. La LÍNEA HORIZONTAL que pediste */
+.billing-line {
+    flex-grow: 1; /* La línea crece para llenar el espacio */
+    height: 1px;
+    background-color: var(--color-text-dark);
+}
+
+/* 5. El texto del descuento */
+.billing-discount {
+    /* Tu petición: Espacio a la izquierda de la línea */
+    margin-left: 20px; 
+    
+    font-size: 0.9rem; /* 14px */
+    color: var(--color-text-dark);
+    line-height: 1.2;
+    flex-shrink: 0; /* Evita que el texto se rompa */
+}
+.billing-discount strong {
+    color: var(--color-accent);
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+
+/* --- (Estilos del interruptor, sin cambios) --- */
+.billing-switch-checkbox {
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    width: 50px;
+    height: 28px;
+    background-color: transparent;
+    border: 2px solid var(--color-text-dark);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+.billing-switch-checkbox::before {
+    content: '';
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-accent);
+    border-radius: 2px;
+    transition: transform 0.2s ease;
+}
+.billing-switch-checkbox:checked {
+    background-color: var(--color-dark-button, #353535);
+    border-color: var(--color-dark-button, #353535);
+}
+.billing-switch-checkbox:checked::before {
+    transform: translateX(22px);
+}
+
+/* --- 7.3 Rejilla de Precios --- */
+.pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* 1 columna por defecto */
+    gap: 30px;
+    align-items: stretch; /* Las tarjetas tendrán la misma altura */
+}
+.plan-card {
+    background-color: var(--color-background-light);
+    border: 2px solid var(--color-border);
+    border-radius: 12px;
+    padding: 30px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all 0.2s ease;
+}
+.plan-card.popular {
+    border: 3px solid var(--color-text-dark);
+    transform: scale(1.03); /* Efecto "pop" */
+}
+.popular-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--color-dark-button, #353535);
+    color: var(--color-accent);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-family: 'Alan Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* --- 7.4 Contenido de la Tarjeta --- */
+.plan-header {
+    margin-bottom: 25px;
+}
+.plan-header h4 {
+    font-family: 'Panchang', sans-serif;
+    font-weight: 700;
+    font-size: 1.75rem; /* 28px */
+    margin-bottom: 5px;
+    color: var(--color-text-dark);
+}
+.plan-price {
+    font-family: 'Panchang', sans-serif;
+    font-weight: 600;
+    font-size: 1.25rem; /* 20px */
+    color: var(--color-text-dark);
+    margin: 0;
+}
+.plan-features {
+    /* Este es el contenedor dorado/beige */
+    /* --- CAMBIO AQUÍ --- */
+    background: linear-gradient(to bottom, var(--color-background-light), var(--color-accent));
+    border: 1px solid var(--color-text-dark); /* 1px color negro */
+    /* --- FIN DEL CAMBIO --- */
+    border-radius: 15px;
+    padding: 20px;
+    list-style: none;
+    flex-grow: 1; /* Esto empuja el botón al fondo */
+    margin-bottom: 30px;
+}
+.plan-features ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+.plan-features li {
+    font-family: 'Alan Sans', sans-serif;
+    font-size: 1rem; /* 16px */
+    color: var(--color-text-dark);
+    margin-bottom: 12px;
+    line-height: 1.4;
+    padding-left: 25px; /* Espacio para el check */
+    position: relative;
+}
+.plan-features li::before {
+    content: '✓'; /* Mantenemos el tick de texto */
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-weight: bold;
+    
+    /* --- CAMBIO AQUÍ --- */
+    color: #008000; /* Color verde */
+    /* --- FIN DEL CAMBIO --- */
+}
+.plan-footer {
+    text-align: center;
+}
+.plan-footer .cta-button {
+    margin: 0; /* Sobrescribe el margen global de .cta-button */
+    width: 100%;
+}
+
+/* ======== 7. ESTILOS DE PÁGINA DE PRECIOS (Continuación) ======== */
+
+/* --- 7.3 Tabla Comparativa (ACTUALIZADO: Degradado en columna completa) --- */
+.comparison-section {
+    padding-top: var(--spacing-section);
+    padding-bottom: var(--spacing-section);
+}
+
+.comparison-section .section-title {
+    text-align: left;
+    font-family: 'BBH Sans Bartle', sans-serif;
+    color:#B79A62;
+}
+
+.comparison-table-wrapper {
+    margin-top: 60px;
+    overflow-x: auto;
+    position: relative; /* ¡NUEVO! Necesario para el pseudo-elemento */
+    padding: 20px 0; /* ¡NUEVO! Espacio para los bordes redondeados del pseudo-elemento */
+}
+
+/* Pseudo-elemento para el degradado de la columna KORVAD */
+.comparison-table-wrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 400px; /* ¡IMPORTANTE! Empieza después de la primera columna (400px) */
+    width: 300px; /* ¡IMPORTANTE! El ancho de la columna KORVAD */
+    height: 100%;
+    background: linear-gradient(to bottom, var(--color-background-light) 0%, var(--color-accent) 100%);
+    border-radius: 20px; /* Bordes redondeados de la "pastilla" */
+    z-index: 0; /* Asegura que esté detrás del contenido de la tabla */
+}
+
+
+.comparison-table {
+    width: 1300px; /* 400 + 300 + 300 + 300 */
+    table-layout: fixed; 
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--color-text-light);
+    margin: 0 auto;
+    position: relative; /* ¡NUEVO! Para que el contenido de la tabla esté sobre el pseudo-elemento */
+    z-index: 1; /* ¡NUEVO! Asegura que el contenido esté sobre el pseudo-elemento */
+}
+
+/* Celdas de Header (th) y Datos (td) */
+.comparison-table th,
+.comparison-table td {
+    padding: 20px;
+    font-size: 1.125rem; /* 18px */
+    vertical-align: middle;
+    font-family: 'Alan Sans', sans-serif; 
+    text-align: center;
+    
+    /* ¡NUEVO! Bordes solo en el thead y a los lados de la columna destacada */
+    border-bottom: 1px solid #B79A62;
+    border-right: 1px solid #B79A62;
+}
+
+.comparison-table strong {font-size: 1.25rem;}
+
+/* Eliminamos el separador derecho de la última columna */
+.comparison-table th:last-child,
+.comparison-table td:last-child {
+    border-right: none;
+}
+
+/* Headers de la tabla (las categorías arriba) */
+.comparison-table thead th {
+    font-size: 1.25rem; /* 20px */
+    font-weight: 400; 
+    width: 300px;
+    
+    /* ¡NUEVO! Bordes superiores y la línea inferior */
+    border-top: 1px solid #B79A62;
+}
+
+/* Eliminar bordes de la celda KORVAD y las que la rodean */
+.comparison-table .highlighted-col, /* Celda KORVAD en el thead */
+.comparison-table td:nth-child(2) { /* Celdas de datos de KORVAD */
+    background: none; /* ¡NUEVO! Quitamos el fondo individual de las celdas */
+    color: var(--color-text-dark); /* El texto sigue siendo oscuro */
+    border: none; /* ¡NUEVO! Eliminamos todos los bordes de estas celdas */
+}
+
+/* La celda de "Características" necesita su borde derecho */
+.comparison-table th:first-child,
+.comparison-table td:first-child {
+    border-right: 1px solid rgba(180, 180, 178, 0.3);
+}
+
+/* Y la columna 3 (Agencia Tradicional) necesita su borde izquierdo */
+.comparison-table thead th:nth-child(3),
+.comparison-table td:nth-child(3) {
+    border-left: 1px solid rgba(180, 180, 178, 0.3);
+}
+
+/* Reglas específicas para la primera columna */
+.comparison-table thead th:first-child {
+    width: 400px;
+    text-align: left;
+    border-top-left-radius: 20px; /* ¡NUEVO! Bordes redondeados para "Características" */
+    border-bottom-left-radius: 20px; /* ¡NUEVO! */
+}
+.comparison-table th[scope="row"] {
+    text-align: left;
+    font-weight: 600; 
+    font-size: 1.125rem;
+}
+
+/* Texto en negrita dentro de la tabla */
+.comparison-table td strong {
+    font-weight: 700;
+}
+
+/* Quitamos el borde inferior de la última fila (general) */
+.comparison-table tbody tr:last-child td,
+.comparison-table tbody tr:last-child th {
+    border-bottom: 0;
+}
+
+/* Ajuste para la última celda de "Características" */
+.comparison-table tbody tr:last-child th:first-child {
+    border-bottom-left-radius: 20px;
+}
+
+
+
+/* ======== 8. ESTILOS REDISEÑADOS TESTIMONIOS (Página Precios) ======== */
+
+/* --- 8.1 Modificador para la sección clara --- */
+.testimonials-section--light {
+    background-color: var(--color-background-light);
+    color: var(--color-text-dark);
+}
+
+/* --- 8.2 Estructura Grid de la tarjeta --- */
+.testimonial-card--redesigned {
+    background-color: transparent; 
+    padding: 0; 
+    margin-bottom: 30px; 
+    
+    /* Mantenemos Grid 2 columnas: Contenido | Stats+CTA */
+    display: grid;
+    grid-template-columns: 1fr auto; /* Columna izq flexible, Columna der ajustada */
+    gap: 30px; /* Espacio entre columnas */
+    align-items: start; /* Alinea ambas columnas arriba */
+    
+    border: 1px solid var(--color-border);
+    padding: 25px; 
+}
+
+/* --- 8.3 Columna Izquierda: Contenido Principal --- */
+.testimonial-main-content {
+    /* Ocupa la primera columna del grid */
+    display: flex;
+    flex-direction: column; /* Apila header, quote, footer */
+    justify-content: space-between; /* Empuja el footer abajo */
+    height: 100%; /* Ocupa toda la altura */
+}
+
+.testimonial-card--redesigned .testimonial-header {
+    display: flex; /* Asegura que header sea flex */
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px; /* Espacio antes de la cita */
+}
+
+.testimonial-card--redesigned .testimonial-avatar {
+    height: 50px; 
+    width: 50px; 
+}
+
+.testimonial-card--redesigned .testimonial-header h4 {
+    font-size: var(--font-size-h4);
+    margin: 0; /* Quitar margen por defecto */
+}
+
+.testimonial-quote {
+    flex-grow: 1; /* Ocupa el espacio disponible empujando el footer */
+    margin-bottom: 20px; /* Espacio antes del footer */
+}
+
+.testimonial-quote p {
+    font-size: var(--font-size-testimonial-quote); /* 16px */
+    font-style: italic; 
+    line-height: 1.5;
+    color: var(--color-text-dark);
+    margin: 0;
+}
+
+.testimonial-card--redesigned .testimonial-footer {
+    display: flex; /* Asegura que footer sea flex */
+    align-items: center;
+    gap: 10px;
+    margin-top: auto; /* Se asegura de estar al final si .testimonial-quote no crece lo suficiente */
+}
+
+.testimonial-card--redesigned .stars {
+    font-size: 1.2rem; 
+    color: #f0c14b; 
+}
+.testimonial-card--redesigned .testimonial-source {
+    height: 20px; 
+}
+
+
+/* --- 8.4 Columna Derecha: Stats + CTA --- */
+.testimonial-aside {
+    /* Ocupa la segunda columna del grid */
+    display: flex;
+    flex-direction: column; /* Apila stats y cta */
+    justify-content: space-between; /* Empuja el CTA abajo */
+    height: 100%; /* Ocupa toda la altura */
+    text-align: left; /* Alinea stats a la izquierda */
+}
+
+.testimonial-stats {
+    font-size: 0.9rem; /* 14px */
+    line-height: 1.4;
+    color: var(--color-text-dark);
+    /* margin-bottom se elimina, el espacio lo da justify-content */
+}
+.testimonial-stats p {
+    font-size: inherit; 
+    margin-bottom: 5px;
+}
+.testimonial-stats strong {
+    font-weight: 700;
+}
+
+.testimonial-cta {
+    font-family: 'Panchang', sans-serif;
+    font-weight: 700; 
+    font-size: 1.25rem; /* 20px */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-background-dark);
+    color: var(--color-accent); 
+    padding: 10px 25px; 
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    white-space: nowrap; 
+    margin-top: 20px; /* Espacio mínimo entre stats y botón */
+}
+.testimonial-cta:hover { 
+    transform: scale(1.05); 
+}
+
+
+
+
+/* 5. MEDIA QUERIES */
+
+/* (max-width: 767px) */
+@media (max-width: 767px){
+
+    section {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .header-logo img {
+        height: 25px; 
+    }
+
+    .hamburger-menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid var(--color-border);
+        height: 100%;
+    }
+
+    .header-nav {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: var(--header-height-estimate);
+        left: 0;
+        width: 100%;
+        background-color: var(--color-background-light);
+        border-bottom: 1px solid var(--color-border);
+        z-index: 1005;
+    }
+
+    .header-nav.nav-open {
+        display: flex;
+    }
+
+    .header-nav a {
+        padding: 20px;
+        text-align: center;
+        width: 100%;
+        border-top: 1px solid var(--color-border);
+        border-left: none;
+        border-right: none;
+    }
+
+    .hamburger-menu.is-active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger-menu.is-active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-menu.is-active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+    }
+
+    .hero-subtitle {
+        text-align: left; 
+    }
+    .cta-button {
+        width: 100%; 
+        margin-left: 0; 
+        margin-bottom: 15px;
+    }
+
+    .authority-logos {
+        flex-wrap: wrap; 
+        gap: 30px;
+    }
+    .authority-logos img {
+        height: 20px; 
+    }
+
+    .section-title {
+        margin-bottom: 40px;
+    }
+
+    .footer-section .cta-button {
+        width: 100%; 
+        margin-left: 0;
+    }
+
+    .contact-hero {
+        text-align: left;
+    }
+    .contact-hero-sub {
+        text-align: left;
+    }
+    .methods-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    .social-bar-content {
+        justify-content: center;
+        gap: 20px 30px;
+    }
+
+    .billing-toggle {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+    .billing-discount {
+        margin-left: 0;
+        flex-basis: 100%;
+    }
+
+    .comparison-table thead {
+        display: none;
+    }
+    
+    .comparison-table tr {
+        display: block;
+        margin-bottom: 20px;
+        border: 1px solid var(--color-border);
+    }
+    
+    .comparison-table td {
+        display: block;
+        text-align: right;
+        padding-left: 50%;
+        position: relative;
+        border-bottom: 1px solid rgba(180, 180, 178, 0.3);
+    }
+
+    .comparison-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 20px;
+        width: 45%;
+        text-align: left;
+        font-weight: 600;
+        color: var(--color-text-light);
+    }
+
+    .comparison-table th[scope="row"] {
+        display: none;
+    }
+
+    .comparison-table .highlighted-col,
+    .comparison-table tbody tr:last-child td:nth-child(2) {
+        border-radius: 0;
+    }
+
+    .billing-toggle {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .billing-spacer-left {
+        display: none;
+    }
+
+
+    .toggle-controls {
+        justify-self: center;
+    }
+
+
+    .billing-discount-wrapper {
+        justify-self: center;
+        justify-content: center;
+    }
+
+    .billing-line {
+        display: none;
+    }
+
+    .billing-discount {
+        margin-left: 0;
+        flex-basis: auto; 
+    }
+
+    .testimonial-card--redesigned {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .testimonial-aside {
+        height: auto;
+        align-items: flex-start;
+    }
+
+    .testimonial-cta {
+        width: 100%;
+        margin-top: 15px;
+    }
+}
+
+
+
+
+/* (min-width: 768px) */
+@media (min-width: 768px) {
+    .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+    .benefit-item { margin-bottom: 0; }
+    
+    .ps-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+    .solution-col { margin-top: 0; }
+    
+    .testimonials-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    .testimonial-card { margin-bottom: 0; }
+
+    .methods-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .expectations-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+@media (min-width: 768px) {
+    .methods-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .expectations-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pricing-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+
+
+/* (min-width: 1024px) */
+@media (min-width: 1024px) {
+    .testimonials-grid { grid-template-columns: repeat(4, 1fr); }
+
+    .expectations-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .testimonials-grid { grid-template-columns: repeat(4, 1fr); }
+
+    .pricing-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+
+    .expectations-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .testimonials-grid { grid-template-columns: repeat(4, 1fr); }
+}
+}
+
+/* ======== 6. CONTROL DE TEXTO DEL FOOTER (RESPONSIVE) ======== */
+
+/* Por defecto (Móvil y Tablet):
+  Mostramos el texto corto y ocultamos el largo.
+*/
+.footer-text-desktop {
+    display: none;
+}
+.footer-text-mobile {
+    display: inline;
+}
+
+/* En Escritorio (1024px y más):
+  Invertimos la visibilidad.
+*/
+@media (min-width: 1024px) {
+    .footer-text-desktop {
+        display: inline;
+    }
+    .footer-text-mobile {
+        display: none;
+    }
+}

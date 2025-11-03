@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Korvad | Blog</title>
+  <link rel="stylesheet" href="/styles/index.css">
+</head>
+<body>
+
+  <header class="header">
+        <div class="header-container container">
+            <a href="/" class="header-logo">
+                <img src="/assets/images/logo-korvad.svg" alt="Logo de KORVAD">
+            </a>
+            <nav class="header-nav" id="main-nav">
+                <a href="/">Home</a>
+                <a href="/contacto">Contacta</a>
+                <a href="/blog">Blog</a>
+                </nav>
+            <button class="hamburger-menu" id="hamburger-btn" aria-label="Abrir menú" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+  <main>
+    <section class="container" style="padding-top: 100px; padding-bottom: 100px;">
+      <h1>Blog de Korvad</h1>
+      <p class="hero-subtitle">Novedades sobre AEO, GEO y el futuro de la IA.</p>
+<a href="/admin" class="cta-button" style="background: #353535; color: #B79A62; margin-bottom: 50px;">
+      Panel de Admin
+    </a>
+    <div class="blog-list" style="margin-top: 60px;">
+      <% posts.forEach(post => { %>
+        <article style="border: 1px solid var(--color-border); padding: 25px; margin-bottom: 30px;">
+          </article>
+      <% }) %>
+      
+      </div>
+      <div class="blog-list" style="margin-top: 60px;">
+        <% posts.forEach(post => { %>
+          <article style="border: 1px solid var(--color-border); padding: 25px; margin-bottom: 30px;">
+            <h2 style="font-family: 'Panchang', sans-serif;"><%= post.title %></h2>
+            <p><%= post.content.substring(0, 200) %>...</p> 
+            <a href="/blog/<%= post.id %>" class="cta-button">Leer más</a>
+          </article>
+        <% }) %>
+        
+        <% if (posts.length === 0) { %>
+          <p>Aún no hay posts en el blog.</p>
+        <% } %>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-section">
+      </footer>
+
+
+
+
+  <script>
+    const hamburgerBtn = document.getElementById('hamburger-btn');
+    const mainNav = document.getElementById('main-nav');
+    
+    hamburgerBtn.addEventListener('click', () => {
+      mainNav.classList.toggle('nav-open');
+      
+      hamburgerBtn.classList.toggle('is-active');
+      
+      const isExpanded = mainNav.classList.contains('nav-open');
+      hamburgerBtn.setAttribute('aria-expanded', isExpanded);
+    });
+
+</script>
+
+</body>
+</html>

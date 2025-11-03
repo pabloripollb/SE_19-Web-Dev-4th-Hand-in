@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="/styles/index.css">
+  <style>
+    .admin-container { max-width: 900px; margin: 100px auto; padding: 40px; }
+    .admin-container h1 { color: var(--color-text-dark); }
+    form { display: flex; flex-direction: column; gap: 15px; background: #f0f0f0; padding: 20px; border-radius: 8px; margin-bottom: 40px; }
+    input, textarea { padding: 10px; font-size: 1rem; }
+    .post-list { list-style: none; padding: 0; }
+    .post-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #ccc; }
+    .post-actions { display: flex; gap: 10px; }
+  </style>
+</head>
+<body style="background: #E8E2D2;">
+
+  <div class="admin-container">
+    <a href="/admin/logout" style="float: right;">Cerrar Sesión</a>
+    <h1>Panel de Admin</h1>
+
+    <h2>Nuevo Post</h2>
+    <form action="/admin/new-post" method="POST">
+      <label for="title">Título:</label>
+      <input type="text" id="title" name="title" required>
+      <label for="content">Contenido:</label>
+      <textarea id="content" name="content" rows="10" required></textarea>
+      <button type="submit" class="cta-button">Crear Post</button>
+    </form>
+
+    <h2>Posts Existentes</h2>
+    <ul class="post-list">
+      <% posts.forEach(post => { %>
+        <li class="post-item">
+          <span><%= post.title %></span>
+          <div class="post-actions">
+            <a href="/admin/edit/<%= post.id %>" class="cta-button" style="background: #B79A62;">Editar</a>
+            
+            <form action="/admin/delete/<%= post.id %>" method="POST" style="margin: 0;">
+              <button type="submit" class="cta-button" style="background: #c0392b;">Borrar</button>
+            </form>
+          </div>
+        </li>
+      <% }) %>
+    </ul>
+  </div>
+
+</body>
+</html>
