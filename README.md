@@ -52,9 +52,3 @@ Besides this piece of text all the rest of the README file was made with AI.
     The application will be available at `http://localhost:3000` (or as specified in your `.env`).
 
 ---
-
-### Self-Reflection Statement
-
-This project was an exercise in building a full-stack Node.js application from a Figma design. The primary focus was creating a server-side rendered (SSR) site using Express and EJS, moving from a static HTML/CSS build to a dynamic one.
-
-The backend is built to handle routing for both the public-facing pages and a protected admin panel, which uses session-based authentication to secure the admin routes. While AI was used as a tool to help scaffold the backend logic and bridge the gap from a static to a dynamic site, the process highlighted the complexities of authentication, templating, and managing environment secrets. The main challenge was understanding how these backend components (routes, sessions, and EJS rendering) interact to deliver a final HTML page to the user.
